@@ -74,4 +74,10 @@ build {
       "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do echo 'Waiting for cloud-init...'; sleep 1; done"
     ]
   }
+
+  post-processors {
+    post-processor "vagrant" {
+      output = "${var.box_name}.box"
+    }
+  }
 }
