@@ -27,7 +27,8 @@ variable "os_user" {
 }
 
 variable "os_password" {
-  type = string
+  type      = string
+  sensitive = true
 }
 
 variable "vm_disk_size" {
