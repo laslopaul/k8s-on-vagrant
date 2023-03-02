@@ -12,7 +12,7 @@ locals {
     "/meta-data" = file("${abspath(path.root)}/data/meta-data")
     "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl.hcl", {
       os_user     = var.os_user
-      os_password = var.os_password
+      os_password = bcrypt(var.os_password)
       os_language = var.os_language
       os_keyboard = var.os_keyboard
       os_timezone = var.os_timezone
