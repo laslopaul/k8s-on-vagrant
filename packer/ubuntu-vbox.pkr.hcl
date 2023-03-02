@@ -10,7 +10,7 @@ packer {
 locals {
   autoinstall_data = {
     "/meta-data" = file("${abspath(path.root)}/data/meta-data")
-    "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl.hcl", {
+    "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl", {
       os_user     = var.os_user
       os_password = bcrypt(var.os_password)
       os_language = var.os_language
