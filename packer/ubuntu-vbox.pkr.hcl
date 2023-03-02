@@ -7,6 +7,19 @@ packer {
   }
 }
 
+locals {
+  autoinstall_data = {
+    "/meta-data" = file("${abspath(path.root)}/data/meta-data")
+    "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl.hcl", {
+      os_user     = var.os_user
+      os_password = var.os_password
+      os_language = var.os_language
+      os_keyboard = var.os_keyboard
+      os_timezone = var.os_timezone
+    })
+  }
+}
+
 source "virtualbox-iso" "ubuntu" {
   guest_os_type    = "Ubuntu_64"
   vm_name          = var.box_name
@@ -16,7 +29,7 @@ source "virtualbox-iso" "ubuntu" {
   ssh_password     = var.os_password
   disk_size        = var.vm_disk_size
   memory           = var.vm_ram_size
-  http_directory   = "http"
+  http_content     = local.autoinstall_data
   headless         = true
   shutdown_command = "echo ${var.os_password} | sudo -S systemctl poweroff"
   vboxmanage = [

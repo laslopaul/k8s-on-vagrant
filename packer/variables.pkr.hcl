@@ -40,19 +40,19 @@ variable "vm_ram_size" {
   default     = 1024
 }
 
-variable "vm_os_language" {
+variable "os_language" {
   type        = string
   description = "The VM operating system lanugage."
   default     = "en_US"
 }
 
-variable "vm_os_keyboard" {
+variable "os_keyboard" {
   type        = string
   description = "The VM operating system keyboard input."
   default     = "us"
 }
 
-variable "vm_os_timezone" {
+variable "os_timezone" {
   type        = string
   description = "The VM operating system timezone."
   default     = "UTC"
