@@ -7,40 +7,6 @@ packer {
   }
 }
 
-variable "box_name" {
-  type    = string
-  default = "ubuntu-jammy-k8s"
-}
-
-variable "install_disk_url" {
-  type    = string
-  default = "http://releases.ubuntu.com/jammy/ubuntu-22.04.2-live-server-amd64.iso"
-}
-
-variable "checksum" {
-  type    = string
-  default = "sha256:5e38b55d57d94ff029719342357325ed3bda38fa80054f9330dc789cd2d43931"
-}
-
-variable "os_user" {
-  type = string
-}
-
-variable "os_password" {
-  type      = string
-  sensitive = true
-}
-
-variable "vm_disk_size" {
-  type    = number
-  default = 30000
-}
-
-variable "vm_ram_size" {
-  type    = number
-  default = 1024
-}
-
 source "virtualbox-iso" "ubuntu" {
   guest_os_type    = "Ubuntu_64"
   vm_name          = var.box_name
