@@ -1,1 +1,3 @@
 artifacts/
+.vscode/
+packer/packer_cache/
