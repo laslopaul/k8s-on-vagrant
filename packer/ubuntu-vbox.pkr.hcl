@@ -27,13 +27,15 @@ source "virtualbox-iso" "ubuntu" {
   iso_checksum     = var.checksum
   ssh_username     = var.os_user
   ssh_password     = var.os_password
+  ssh_timeout      = "40m"
   disk_size        = var.vm_disk_size
   memory           = var.vm_ram_size
   http_content     = local.autoinstall_data
   headless         = true
   shutdown_command = "echo ${var.os_password} | sudo -S systemctl poweroff"
   vboxmanage = [
-    ["modifyvm", "{{.Name}}", "--uartmode1", "disconnected"]
+    ["modifyvm", "{{.Name}}", "--uartmode1", "disconnected"],
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
   ]
 
   boot_command = [
