@@ -11,11 +11,12 @@ locals {
   autoinstall_data = {
     "/meta-data" = file("${abspath(path.root)}/data/meta-data")
     "/user-data" = templatefile("${abspath(path.root)}/data/user-data.pkrtpl", {
-      os_user     = var.os_user
-      os_password = bcrypt(var.os_password)
-      os_language = var.os_language
-      os_keyboard = var.os_keyboard
-      os_timezone = var.os_timezone
+      os_user        = var.os_user
+      os_password    = bcrypt(var.os_password)
+      os_language    = var.os_language
+      os_keyboard    = var.os_keyboard
+      os_timezone    = var.os_timezone
+      ssh_public_key = var.ssh_public_key
     })
   }
 }
