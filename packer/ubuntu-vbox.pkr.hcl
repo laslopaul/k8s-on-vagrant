@@ -32,7 +32,7 @@ source "virtualbox-iso" "ubuntu" {
   memory           = var.vm_ram_size
   http_content     = local.autoinstall_data
   headless         = true
-  shutdown_command = "echo ${var.os_password} | sudo -S systemctl poweroff"
+  shutdown_command = "sudo systemctl poweroff"
   vboxmanage = [
     ["modifyvm", "{{.Name}}", "--uartmode1", "disconnected"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
