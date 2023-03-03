@@ -58,7 +58,8 @@ build {
 
   post-processors {
     post-processor "vagrant" {
-      output = "${abspath(path.root)}/artifacts/${var.box_name}.box"
+      output            = "${abspath(path.root)}/artifacts/${var.box_name}.box"
+      compression_level = 9
     }
   }
 }
