@@ -1,0 +1,5 @@
+---
+cf_version: "1.6.3"
+kubectl_version: "1.26.2"
+platform: linux
+arch: amd64
