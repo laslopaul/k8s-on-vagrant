@@ -1,0 +1,5 @@
+---
+k8s_nodes_public_network: 192.168.56.0/24
+k8s_cluster_services_network: 10.32.0.0/24
+k8s_workers_group: workers
+k8s_controllers_group: control_plane
