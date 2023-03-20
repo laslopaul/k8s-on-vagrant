@@ -4,7 +4,7 @@ Install client tools (cfssl, cfssljson and kubectl) needed for Kubernetes cluste
 
 ## Requirements
 
-This role should be run on Ansible host.
+This role should be run on Ansible host (see example playbook).
 
 ## Role Variables
 
