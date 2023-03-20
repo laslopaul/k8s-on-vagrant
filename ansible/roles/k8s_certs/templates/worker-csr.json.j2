@@ -1,0 +1,16 @@
+{
+  "CN": "system:node:{{ hostvars[item]['ansible_hostname'] }}",
+  "key": {
+    "algo": "{{ cert_algo }}",
+    "size": {{ cert_keysize }}
+  },
+  "names": [
+    {
+      "C": "{{ cert_names_c }}",
+      "L": "{{ cert_names_l }}",
+      "O": "system:nodes",
+      "OU": "{{ cert_names_ou }}",
+      "ST": "{{ cert_names_st }}"
+    }
+  ]
+}

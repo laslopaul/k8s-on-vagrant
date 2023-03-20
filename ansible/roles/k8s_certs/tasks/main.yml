@@ -1,0 +1,6 @@
+---
+- name: Create CFSSL configuration files
+  ansible.builtin.include_tasks: "create-config.yml"
+
+- name: Generate Kubernetes certificates
+  ansible.builtin.include_tasks: "generate-certs.yml"

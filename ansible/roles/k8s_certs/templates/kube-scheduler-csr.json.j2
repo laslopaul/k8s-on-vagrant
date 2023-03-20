@@ -1,0 +1,16 @@
+{
+  "CN": "system:kube-scheduler",
+  "key": {
+    "algo": "{{ cert_algo }}",
+    "size": {{ cert_keysize }}
+  },
+  "names": [
+    {
+      "C": "{{ cert_names_c }}",
+      "L": "{{ cert_names_l }}",
+      "O": "system:kube-scheduler",
+      "OU": "{{ cert_names_ou }}",
+      "ST": "{{ cert_names_st }}"
+    }
+  ]
+}

@@ -5,3 +5,9 @@
       cf_version: "1.6.3"
       kubectl_version: "1.26.2"
   tags: client_tools
+
+- name: Provision Certificate Authority and generate Kubernetes certificates
+  hosts: localhost
+  roles:
+    - role: k8s_certs
+  tags: k8s_certs

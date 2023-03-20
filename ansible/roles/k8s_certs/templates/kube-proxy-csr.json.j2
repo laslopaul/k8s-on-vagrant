@@ -1,0 +1,16 @@
+{
+  "CN": "system:kube-proxy",
+  "key": {
+    "algo": "{{ cert_algo }}",
+    "size": {{ cert_keysize }}
+  },
+  "names": [
+    {
+      "C": "{{ cert_names_c }}",
+      "L": "{{ cert_names_l }}",
+      "O": "system:node-proxier",
+      "OU": "{{ cert_names_ou }}",
+      "ST": "{{ cert_names_st }}"
+    }
+  ]
+}

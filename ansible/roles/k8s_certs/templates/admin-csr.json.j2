@@ -1,0 +1,16 @@
+{
+  "CN": "admin",
+  "key": {
+    "algo": "{{ cert_algo }}",
+    "size": {{ cert_keysize }}
+  },
+  "names": [
+    {
+      "C": "{{ cert_names_c }}",
+      "L": "{{ cert_names_l }}",
+      "O": "system:masters",
+      "OU": "{{ cert_names_ou }}",
+      "ST": "{{ cert_names_st }}"
+    }
+  ]
+}
