@@ -2,6 +2,12 @@
 # Network address range for Kubernetes control plane & worker nodes
 k8s_instances_network: 192.168.56.0/24
 
+# Kubernetes public IP address (default: IP of the first controller instance)
+k8s_public_ip: "192.168.56.10"
+
+# Kubernetes cluster name
+k8s_cluster_name: k8s-on-vagrant
+
 # Network address range for internal cluster services
 k8s_cluster_services_network: 10.32.0.0/24
 
