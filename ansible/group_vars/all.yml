@@ -22,3 +22,6 @@ k8s_controllers_group: control_plane
 
 # Location of Kubernetes TLS certificates
 k8s_certs_dir: "{{ playbook_dir }}/artifacts/certs"
+
+# Location of kubeconfig files
+k8s_kubeconfig_dir: "{{ playbook_dir }}/artifacts/kubeconfig"
