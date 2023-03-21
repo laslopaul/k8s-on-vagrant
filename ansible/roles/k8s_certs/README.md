@@ -16,13 +16,16 @@ This role uses Cloudflare SSL toolkit (`cfssl` and `cfssljson`) and `netaddr` Py
 ## Role Variables
 
 - `cfssl_config_dir`: path for CFSSL configuration files to be created in (default: `{{ playbook_dir }}/artifacts/cfssl-config`)
-- `certs_output_dir`: path where TLS certificates will be saved (default: `{{ playbook_dir }}/artifacts/certs`)
 - `cert_algo`: algorithm for TLS certificates (default: `rsa`)
 - `cert_keysize`: key length for TLS certificates (default: `2048`)
 - `cert_names_c`: sets 'Country (C)' field in certificate properties (default: `BY`)
 - `cert_names_l`: sets 'Location (L)' field in certificate properties (default: `Minsk`)
 - `cert_names_st`: sets 'State (ST)' field in certificate properties (default: `Minsk Capital`)
 - `cert_names_ou`: sets 'Organizational Unit (OU)' field in certificate properties (default: `Kubernetes on Vagrant`)
+
+### Group variables
+
+- `certs_output_dir`: path where TLS certificates will be saved (default: `{{ playbook_dir }}/artifacts/certs`)
 
 ### Variables that should be left unchanged
 

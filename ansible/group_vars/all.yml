@@ -19,3 +19,6 @@ k8s_workers_group: workers
 
 # Name of Ansible group for Kubernetes control plane
 k8s_controllers_group: control_plane
+
+# Location of Kubernetes TLS certificates
+k8s_certs_dir: "{{ playbook_dir }}/artifacts/certs"
