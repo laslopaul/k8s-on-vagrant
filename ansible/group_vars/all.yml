@@ -5,6 +5,9 @@ k8s_instances_network: 192.168.56.0/24
 # Network address range for internal cluster services
 k8s_cluster_services_network: 10.32.0.0/24
 
+# IP address range assigned to Kubernetes pods
+k8s_pod_cidr_range: 10.200.0.0/16
+
 # Name of Ansible group for Kubernetes worker nodes
 k8s_workers_group: workers
 
