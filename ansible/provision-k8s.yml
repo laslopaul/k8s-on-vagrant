@@ -11,3 +11,10 @@
   roles:
     - role: k8s_certs
   tags: k8s_certs
+
+- name: Configure firewall on Kubernetes instances
+  hosts: all
+  become: true
+  roles:
+    - role: fw_rules
+  tags: fw_rules

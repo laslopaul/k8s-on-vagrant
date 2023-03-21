@@ -1,0 +1,24 @@
+*filter
+:INPUT DROP [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m conntrack --ctstate INVALID -j DROP
+
+# Allow SSH connections from Virtualbox host
+-A INPUT -p tcp -s {{ ansible_default_ipv4.network }}/{{ ansible_default_ipv4.prefix }} --dport 22 -j ACCEPT
+
+# Allow internal communication
+-A INPUT -p icmp -s {{ k8s_instances_network }},{{ k8s_pod_cidr_range }} -j ACCEPT
+-A INPUT -p tcp -s {{ k8s_instances_network }},{{ k8s_pod_cidr_range }} -j ACCEPT
+-A INPUT -p udp -s {{ k8s_instances_network }},{{ k8s_pod_cidr_range }} -j ACCEPT
+
+# Allow external ICMP and HTTPS
+-A INPUT -p icmp -s 0.0.0.0/0 -j ACCEPT
+-A INPUT -p tcp -s 0.0.0.0/0 --dport 6443 -j ACCEPT
+
+-A INPUT -p udp -j REJECT --reject-with icmp-port-unreachable
+-A INPUT -p tcp -j REJECT --reject-with tcp-reset
+-A INPUT -j REJECT --reject-with icmp-proto-unreachable
+COMMIT

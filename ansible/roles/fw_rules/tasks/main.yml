@@ -1,0 +1,31 @@
+---
+- name: Ensure iptables is installed
+  ansible.builtin.apt:
+    package: iptables-persistent
+    update_cache: true
+  tags: fw_rules
+
+- name: Install iptables IPv4 rules
+  ansible.builtin.template:
+    src: rules.v4.j2
+    dest: /etc/iptables/rules.v4
+    mode: "0750"
+    owner: root
+    group: root
+  tags: fw_rules
+
+- name: Install iptables IPv6 rules
+  ansible.builtin.copy:
+    src: rules.v6
+    dest: /etc/iptables/rules.v6
+    mode: "0750"
+    owner: root
+    group: root
+  tags: fw_rules
+
+- name: Reload firewall service
+  ansible.builtin.service:
+    name: netfilter-persistent
+    enabled: true
+    state: restarted
+  tags: fw_rules
