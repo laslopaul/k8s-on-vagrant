@@ -44,11 +44,11 @@
         -ca=ca.pem \
         -ca-key=ca-key.pem \
         -config=ca-config.json \
-        -hostname={{ hostvars.item.ansible_hostname }},{{ hostvars.item.ansible_all_ipv4_addresses | ansible.utils.reduce_on_network( k8s_instances_network ) | first }} \
+        -hostname={{ hostvars[item]['ansible_hostname'] }},{{ hostvars[item]['ansible_all_ipv4_addresses'] | ansible.utils.reduce_on_network( k8s_instances_network ) | first }} \
         -profile=kubernetes \
         {{ item }}-csr.json | cfssljson -bare {{ k8s_certs_dir }}/{{ item }}
     creates: "{{ k8s_certs_dir }}/{{ item }}-key.pem"
-    with_inventory_hostnames: "{{ k8s_workers_group }}"
+  with_inventory_hostnames: "{{ k8s_workers_group }}"
   tags: k8s_certs_generate
 
 - name: Generate the Kube Controller Manager certificate and private key
