@@ -10,7 +10,7 @@
 
 - name: Create folder for Kubernetes certificates
   ansible.builtin.file:
-    path: "{{ certs_output_dir }}"
+    path: "{{ k8s_certs_dir }}"
     state: directory
     mode: "0750"
   tags: k8s_certs_config
