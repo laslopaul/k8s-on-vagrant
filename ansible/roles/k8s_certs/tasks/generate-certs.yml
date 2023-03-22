@@ -4,9 +4,9 @@
 - name: Generate the CA certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert -initca ca-csr.json | cfssljson -bare {{ k8s_certs_dir }}/ca
     creates: "{{ item }}"
   loop:
@@ -18,9 +18,9 @@
 - name: Generate the admin certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
@@ -37,9 +37,9 @@
 - name: Generate the worker node certificates and private keys
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
@@ -48,15 +48,15 @@
         -profile=kubernetes \
         {{ item }}-csr.json | cfssljson -bare {{ k8s_certs_dir }}/{{ item }}
     creates: "{{ k8s_certs_dir }}/{{ item }}-key.pem"
-  with_inventory_hostnames: "{{ k8s_workers_group }}"
+    with_inventory_hostnames: "{{ k8s_workers_group }}"
   tags: k8s_certs_generate
 
 - name: Generate the Kube Controller Manager certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
@@ -73,9 +73,9 @@
 - name: Generate the Kube Proxy certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
@@ -92,9 +92,9 @@
 - name: Generate the Kube Scheduler certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
@@ -110,8 +110,7 @@
 
 - name: Generate the Kubernetes API Server certificate and private key
   ansible.builtin.shell: >
-    set -o errexit; \
-    set -o pipefail; \
+    set -eo pipefail;
     cfssl gencert \
       -ca=ca.pem \
       -ca-key=ca-key.pem \
@@ -121,15 +120,16 @@
       kubernetes-csr.json | cfssljson -bare {{ k8s_certs_dir }}/kubernetes
   args:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     creates: "{{ k8s_certs_dir }}/kubernetes-key.pem"
   tags: k8s_certs_generate
 
 - name: Generate the service account certificate and private key
   ansible.builtin.shell:
     chdir: "{{ cfssl_config_dir }}"
+    executable: /bin/bash
     cmd: >
-      set -o errexit; \
-      set -o pipefail; \
+      set -eo pipefail;
       cfssl gencert \
         -ca=ca.pem \
         -ca-key=ca-key.pem \
