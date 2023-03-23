@@ -1,0 +1,16 @@
+{
+  "CN": "Kubernetes",
+  "key": {
+    "algo": "{{ cert_algo }}",
+    "size": {{ cert_keysize }}
+  },
+  "names": [
+    {
+      "C": "{{ cert_names_c }}",
+      "L": "{{ cert_names_l }}",
+      "O": "Kubernetes",
+      "OU": "CA",
+      "ST": "{{ cert_names_st }}"
+    }
+  ]
+}

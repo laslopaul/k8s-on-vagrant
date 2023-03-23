@@ -1,0 +1,27 @@
+---
+- name: Install cfssl
+  become: true
+  ansible.builtin.get_url:
+    url: |
+      "https://github.com/cloudflare/cfssl/releases/download/v{{ cf_version }}/cfssl_{{ cf_version }}_{{ platform }}_{{ arch }}"
+    dest: /usr/local/bin/cfssl
+    mode: "0655"
+  tags: cfssl
+
+- name: Install cfssljson
+  become: true
+  ansible.builtin.get_url:
+    url: |
+      "https://github.com/cloudflare/cfssl/releases/download/v{{ cf_version }}/cfssljson_{{ cf_version }}_{{ platform }}_{{ arch }}"
+    dest: /usr/local/bin/cfssljson
+    mode: "0655"
+  tags: cfssl
+
+- name: Install kubectl
+  become: true
+  ansible.builtin.get_url:
+    url: |
+      "https://dl.k8s.io/release/v{{ kubectl_version }}/bin/{{ platform }}/{{ arch }}/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: "0655"
+  tags: kubectl

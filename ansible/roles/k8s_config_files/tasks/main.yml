@@ -1,0 +1,6 @@
+---
+- name: Prepare shell scripts
+  ansible.builtin.include_tasks: "prepare-scripts.yml"
+
+- name: Create kubeconfig files
+  ansible.builtin.include_tasks: "create-kubeconfig.yml"

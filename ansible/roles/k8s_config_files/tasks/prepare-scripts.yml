@@ -1,0 +1,44 @@
+---
+- name: Gather facts about Kubernetes worker instances
+  ansible.builtin.setup:
+  delegate_to: "{{ item }}"
+  delegate_facts: true
+  loop: "{{ groups[k8s_workers_group] }}"
+  tags: k8s_kubeconfig_scripts
+
+- name: Prepare shell scripts (kubelet)
+  ansible.builtin.template:
+    src: worker-kubeconfig.sh.j2
+    dest: "/tmp/{{ item }}-kubeconfig.sh"
+    mode: "0700"
+  with_inventory_hostnames:
+    - "{{ k8s_workers_group }}"
+  tags: k8s_kubeconfig_scripts
+
+- name: Prepare shell scripts (kube-proxy)
+  ansible.builtin.template:
+    src: kube-proxy-kubeconfig.sh.j2
+    dest: /tmp/kube-proxy-kubeconfig.sh
+    mode: "0700"
+  tags: k8s_kubeconfig_scripts
+
+- name: Prepare shell scripts (kube-controller-manager)
+  ansible.builtin.template:
+    src: kube-controller-manager-kubeconfig.sh.j2
+    dest: /tmp/kube-controller-manager-kubeconfig.sh
+    mode: "0700"
+  tags: k8s_kubeconfig_scripts
+
+- name: Prepare shell scripts (kube-scheduler)
+  ansible.builtin.template:
+    src: kube-scheduler-kubeconfig.sh.j2
+    dest: /tmp/kube-scheduler-kubeconfig.sh
+    mode: "0700"
+  tags: k8s_kubeconfig_scripts
+
+- name: Prepare shell scripts (kube-admin)
+  ansible.builtin.template:
+    src: admin-kubeconfig.sh.j2
+    dest: /tmp/admin-kubeconfig.sh
+    mode: "0700"
+  tags: k8s_kubeconfig_scripts

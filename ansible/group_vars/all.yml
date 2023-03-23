@@ -1,0 +1,27 @@
+---
+# Network address range for Kubernetes control plane & worker nodes
+k8s_instances_network: 192.168.56.0/24
+
+# Kubernetes public IP address (default: IP of the first controller instance)
+k8s_public_ip: "192.168.56.10"
+
+# Kubernetes cluster name
+k8s_cluster_name: k8s-on-vagrant
+
+# Network address range for internal cluster services
+k8s_cluster_services_network: 10.32.0.0/24
+
+# IP address range assigned to Kubernetes pods
+k8s_pod_cidr_range: 10.200.0.0/16
+
+# Name of Ansible group for Kubernetes worker nodes
+k8s_workers_group: workers
+
+# Name of Ansible group for Kubernetes control plane
+k8s_controllers_group: control_plane
+
+# Location of Kubernetes TLS certificates
+k8s_certs_dir: "{{ playbook_dir }}/artifacts/certs"
+
+# Location of kubeconfig files
+k8s_kubeconfig_dir: "{{ playbook_dir }}/artifacts/kubeconfig"

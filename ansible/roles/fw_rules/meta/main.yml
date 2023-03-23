@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Vlad Vinnik
+  description: Setup firewall rules
+  license: CC-BY-4.0
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  min_ansible_version: "2.1"
+  galaxy_tags:
+    - iptables
+    - firewall
+
+dependencies: []
