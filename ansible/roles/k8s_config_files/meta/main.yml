@@ -1,0 +1,17 @@
+galaxy_info:
+  author: Vlad Vinnik
+  description: Create Kubernetes config files
+  license: CC-BY-4.0
+  platforms:
+    - name: GenericLinux
+      versions:
+        - all
+    - name: macOS
+      versions:
+        - all
+  min_ansible_version: "2.1"
+  galaxy_tags:
+    - kubernetes
+    - kubeconfig
+
+dependencies: []
